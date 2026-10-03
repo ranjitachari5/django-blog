@@ -1,38 +1,166 @@
-/* stylelint-disable selector-list-comma-newline-after */
 
+/* General */
+body {
+  background-color: #f8f9fc;
+  color: #202b3c;
+  font-family: Arial, sans-serif;
+  line-height: 1.7;
+}
+
+.container {
+  max-width: 1140px;
+}
+
+/* Header */
 .blog-header {
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 1rem;
 }
 
 .blog-header-logo {
-  font-family: "Playfair Display", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
   font-size: 2.25rem;
+  font-weight: 900;
+  color: #172337 !important;
 }
 
 .blog-header-logo:hover {
   text-decoration: none;
+  color: #2563eb !important;
 }
 
+/* Headings */
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Playfair Display", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  color: #172337;
 }
 
 .display-4 {
   font-size: 2.5rem;
 }
+
 @media (min-width: 768px) {
   .display-4 {
     font-size: 3rem;
   }
 }
 
-.flex-auto {
-  flex: 0 0 auto;
+/* Navigation */
+.nav-scroller {
+  border-bottom: 1px solid #e5e7eb;
 }
 
-.h-250 { height: 250px; }
-@media (min-width: 768px) {
-  .h-md-250 { height: 250px; }
+.nav a {
+  transition: color 0.2s ease;
+}
+
+.nav a:hover {
+  color: #2563eb !important;
+  text-decoration: none;
+}
+
+/* Hero banner */
+.hero-featured {
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  background-color: #172337;
+  background-position: center;
+  background-size: cover;
+  background-blend-mode: overlay;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.hero-featured h1 {
+  color: #fff;
+  font-weight: 900;
+}
+
+.hero-featured p {
+  color: #f1f5f9;
+}
+
+/* Section headings */
+.section-heading {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 900;
+  color: #172337;
+  margin-bottom: 8px;
+}
+
+/* Featured cards */
+.post-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #fff;
+  overflow: hidden;
+  height: 100%;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.post-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.post-card .card-body {
+  padding: 22px;
+}
+
+.post-card h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.post-card p {
+  color: #64748b;
+}
+
+/* Recent posts */
+.blog-post {
+  margin-bottom: 1.5rem;
+}
+
+.blog-post-title {
+  font-size: 2rem;
+}
+
+.blog-post-meta {
+  margin-bottom: 1.25rem;
+  color: #727272;
+}
+
+.recent-card {
+  border: 0;
+  border-bottom: 1px solid #e5e7eb;
+  border-radius: 0;
+  background: transparent;
+  margin-bottom: 1rem;
+}
+
+.recent-card .card-body {
+  padding: 18px 12px;
+}
+
+.recent-card h3 {
+  font-size: 0.5rem;
+}
+
+.recent-card p {
+  color: #64748b;
+}
+
+/* Sidebar */
+.sidebar-box {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.sidebar-box h4 {
+  font-weight: 700;
 }
 
 /* Pagination */
@@ -40,30 +168,79 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 4rem;
 }
 
-/*
- * Blog posts
- */
-.blog-post {
-  margin-bottom: 4rem;
-}
-.blog-post-title {
-  font-size: 2.5rem;
-}
-.blog-post-meta {
-  margin-bottom: 1.25rem;
-  color: #727272;
+.flex-auto {
+  flex: 0 0 auto;
 }
 
-/*
- * Footer
- */
-.blog-footer {
-  padding: 2.5rem 0;
-  color: #727272;
-  text-align: center;
-  background-color: #f9f9f9;
-  border-top: .05rem solid #e5e5e5;
+.h-250 {
+  height: 250px;
 }
+
+@media (min-width: 768px) {
+  .h-md-250 {
+    height: 250px;
+  }
+}
+
+/* Buttons and links */
+a {
+  transition: color 0.2s ease;
+}
+
+.btn-warning {
+  border: none;
+  font-weight: 600;
+}
+
+.btn-warning:hover {
+  background-color: #e6a000;
+}
+
+/* Footer */
+.blog-footer {
+  padding: 2rem 0;
+  color: #e2e8f0;
+  text-align: center;
+  background-color: #172337;
+  border-top: 1px solid #273449;
+  margin-top: 40px;
+}
+
 .blog-footer p:last-child {
   margin-bottom: 0;
 }
+
+.blog-footer a {
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .blog-header-logo {
+    font-size: 1.5rem;
+  }
+
+  .hero-featured {
+    min-height: 250px;
+    padding: 25px !important;
+  }
+
+  .hero-featured h1 {
+    font-size: 1.75rem;
+  }
+
+  .post-card h3 {
+    font-size: 1.15rem;
+  }
+
+  .nav-scroller .nav {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    gap: 12px;
+  }
+
+  .nav-scroller .nav a {
+    white-space: nowrap;
+  }
+}
+
