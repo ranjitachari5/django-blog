@@ -144,9 +144,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .recent-card h3 {
-  font-size: 0.5rem;
+  font-size: 2.2rem;
+  font-weight: 700;
 }
-
 .recent-card p {
   color: #64748b;
 }

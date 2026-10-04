@@ -1,43 +1,6 @@
-{%load static%}
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Django Blogs</title>
-    <link
-      href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900"
-      rel="stylesheet"
-    />
-    <link href="{%static 'css/blog.css' %}" rel="stylesheet" />
-  </head>
-  <body>
-    <div class="container">
-      <header class="blog-header py-3">
-        <div class="row flex-nowrap justify-content-between align-items-center">
-          <div class="col-8 pt-1">
-            <a class="blog-header-logo text-dark" href="/">Django Blog</a>
-          </div>
-          <div class="col-4 d-flex justify-content-end align-items-center">
-            <a class="btn btn-sm btn-warning" href="#">Login</a> &nbsp;
-            <a class="btn btn-sm btn-outline-secondary" href="#">Register</a>
-          </div>
-        </div>
-      </header>
+{%extends 'base.html' %}
 
-      <div class="nav-scroller py-1 mb-2">
-        <nav class="nav d-flex justify-content-between">
-          {% for category in categories %}
-           <a class="p-2 text-muted"
-               href="{% url 'category' category.id %}">{{category}}</a>
-          {% endfor %}
-        </nav>
-      </div>
+{%block content%}
 
       {%for post in featured_posts%} {% if forloop.first%}
       <div
@@ -45,7 +8,7 @@
         style="background-image: url('{{ post.featured_img.url }}'); background-blend-mode: overlay;background-size:cover;"
       >
         <div class="col-md-8 px-0">
-          <h1 class="display-5 text-white sans-serif">{{post.title}}</h1>
+          <h1 class="display-5 text-white ">{{post.title}}</h1>
           <p class="lead my-3">{{post.short_description}}</p>
           <p class="lead mb-0">
             <a href="#" class="text-white font-weight-bold"
@@ -89,16 +52,20 @@
             {% for post in posts %}
             <div class="blog-post">
               <div class="card recent-card mb-3">
-                <div class="card-body">
-                  <h3>{{post.title}}</h3>
-                  <small class="text-muted">
-                    {{post.created_at|timesince}} ago | {{post.author}}
-                  </small>
-                  <p class="mt-2">
-                    {{post.short_description|truncatewords:20}}
-                  </p>
-                </div>
-              </div>
+    <div class="card-body">
+
+        <h5>{{ post.title }}</h5>
+
+        <small class="text-muted">
+            {{ post.created_at|timesince }} ago | {{ post.author }}
+        </small>
+
+        <p class="mt-2">
+            {{ post.short_description|truncatewords:20 }}
+        </p>
+
+    </div>
+</div>
             </div>
             {% empty %}
             <p>No recent posts available.</p>
@@ -125,9 +92,5 @@
           </aside>
         </div>
       </main>
-    </div>
-    <footer class="blog-footer">
-      <p>Django blog built with � by <a href="#">Ranjit Kumar a</a></p>
-    </footer>
-  </body>
-</html>
+
+    {%endblock%}

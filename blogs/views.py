@@ -6,9 +6,6 @@ from .models import Blog, Category
 def posts_by_category(request,category_id):
     posts=Blog.objects.filter(category_id=category_id,status="Published")
     categories=Category.objects.all()
-    try:
-        category = get_object_or_404(Category, id=category_id)
-    except:
-        return redirect('404.html')
+    category = get_object_or_404(Category, id=category_id)
     context={"posts":posts,"category":category,"categories":categories}
     return render(request,'post_by_category.html',context)
