@@ -9,6 +9,6 @@ def posts_by_category(request,category_id):
     try:
         category = get_object_or_404(Category, id=category_id)
     except:
-        return redirect('home')
+        return redirect('404.html')
     context={"posts":posts,"category":category,"categories":categories}
     return render(request,'post_by_category.html',context)
