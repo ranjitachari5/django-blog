@@ -1,5 +1,9 @@
 
 /* General */
+a {
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
 body {
   background-color: #f8f9fc;
   color: #202b3c;
@@ -32,7 +36,7 @@ body {
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
   font-family: "Playfair Display", Georgia, "Times New Roman", serif;
-  color: #172337;
+  color: #172337; 
 }
 
 .display-4 {
@@ -75,10 +79,18 @@ h1, h2, h3, h4, h5, h6 {
 .hero-featured h1 {
   color: #fff;
   font-weight: 900;
+  
 }
 
 .hero-featured p {
   color: #f1f5f9;
+}
+
+.bg-dark a,
+.bg-dark a:hover,
+.bg-dark a:focus,
+.bg-dark a:active {
+  text-decoration: none;
 }
 
 /* Section headings */
@@ -244,3 +256,21 @@ a {
   }
 }
 
+/* search input */
+.search-input {
+  border: 1px solid #ced4da;
+  border-radius: 0.5rem;
+  padding: 0.3rem 0.75rem;
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: orange;
+  box-shadow: 0 0 0 0.2rem rgba(255, 165, 0, 0.25);
+}
+
+.search-btn {
+  border: 1px solid orange;
+  border-radius: 0.5rem;
+  padding: 0.3rem 0.9rem;
+}

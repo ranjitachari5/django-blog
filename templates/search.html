@@ -1,21 +1,7 @@
-
-{%extends 'base.html' %}
-
+{%extends 'base.html'%}
 {%block content%}
-
-<!-- Category Heading -->
-<div class="text-center my-4">
-    <h3 class="section-heading text-uppercase">
-        Category - {{ category.category_name }}
-    </h3>
-    <p class="text-muted">
-        Explore articles in this category
-    </p>
-</div>
-
-<!-- Category Posts -->
 <div class="row mb-4">
-    {% for post in posts %}
+    {% for post in search_blog %}
         <div class="col-md-6 mb-4">
             <div class="card post-card h-100">
                 <div class="card-body">
@@ -38,13 +24,9 @@
         <div class="col-12 text-center py-5">
             <h5>No posts found</h5>
             <p class="text-muted">
-                There are no articles in this category yet.
+                There are no articles with the searched keyword.
             </p>
         </div>
     {% endfor %}
 </div>
-
-
- 
 {%endblock%}
-

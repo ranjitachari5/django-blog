@@ -2,22 +2,26 @@
 
 {%block content%}
 
-      {%for post in featured_posts%} {% if forloop.first%}
+      {%for post in featured_posts%}
+       {% if forloop.first %}
       <div
         class="sans-serif p-3 p-md-5 text-white rounded bg-dark"
         style="background-image: url('{{ post.featured_img.url }}'); background-blend-mode: overlay;background-size:cover;"
       >
         <div class="col-md-8 px-0">
-          <h1 class="display-5 text-white ">{{post.title}}</h1>
+          <a href="{% url 'blogs' post.slug %}" class="text-white font-weight-bold"
+              ><h1 class="display-5 text-white ">{{post.title}}</h1>
+          </a
+            >
           <p class="lead my-3">{{post.short_description}}</p>
           <p class="lead mb-0">
-            <a href="#" class="text-white font-weight-bold"
-              >Continue reading...</a
-            >
+            <a href="{% url 'blogs' post.slug %}" class="text-white  font-weight-bold"
+              >Continue reading...</a>
           </p>
         </div>
       </div>
-      {% endif%} {%endfor%}
+      {%endif%}
+       {%endfor%}
 
       <!-- Featured Posts -->
       <div class="text-center my-3 ml-3 text-uppercase font-weight-bold">
@@ -29,7 +33,9 @@
         <div class="col-md-6 mb-4">
           <div class="card post-card h-100">
             <div class="card-body">
-              <h3>{{post.title}}</h3>
+              <a href="{% url 'blogs' post.slug %}" class="text-white font-weight-bold"
+              ><h3 class="display-5">{{post.title}}</h3>
+            </a>
               <small class="text-muted">
                 {{post.created_at|timesince}} ago | {{post.author}}
               </small>
@@ -54,8 +60,9 @@
               <div class="card recent-card mb-3">
     <div class="card-body">
 
-        <h5>{{ post.title }}</h5>
-
+         <a href="{% url 'blogs' post.slug %}" class="text-white font-weight-bold"
+              ><h5 class="display-5">{{post.title}}</h5>
+            </a>
         <small class="text-muted">
             {{ post.created_at|timesince }} ago | {{ post.author }}
         </small>
