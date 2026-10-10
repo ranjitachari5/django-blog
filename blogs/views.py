@@ -17,11 +17,4 @@ def blogs(request,slug):
 
 # seach feature
 def search(request):
-    keyword=request.GET.get('keyword')
-    blog=Blog.objects.filter(
-        Q(title__icontains=keyword) |
-        Q(short_description__icontains=keyword)|
-        Q(blog_body__icontains=keyword ),
-        status='Published')
-    context={"search_blog":blog}
-    return render(request,'search.html',context)
+    return render(request,'search.html')

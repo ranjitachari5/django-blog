@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Register | Your Blog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #F2B01E;
+    --accent-dark: #C98F00;
+    --text: #1f1d18;
+    --muted: #6f6a5c;
+    --border: #dfd9c6;
+    --error: #b3261e;
+    /* Swap this URL for your own image any time */
+    --hero-image: url("https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1400&q=80");
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-size: 15px;
+    color: var(--text);
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    background: #fff;
+  }
+
+  /* ---------- Image panel ---------- */
+  .hero {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 44px 52px;
+    color: #fff;
+    background-color: #3a2c05;               /* fallback if the image can't load */
+    background-image:
+      linear-gradient(180deg, rgba(25,18,2,.55) 0%, rgba(25,18,2,.35) 45%, rgba(25,18,2,.8) 100%),
+      var(--hero-image);
+    background-size: cover;
+    background-position: center;
+  }
+  .hero::after {                              /* thin yellow edge */
+    content: "";
+    position: absolute; top: 0; right: 0; bottom: 0;
+    width: 5px;
+    background: var(--accent);
+  }
+  .hero .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: .2px;
+  }
+  .hero .logo span { color: var(--accent); }
+  .hero h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    line-height: 1.15;
+    font-weight: 700;
+    max-width: 440px;
+    margin-bottom: 14px;
+  }
+  .hero p { max-width: 420px; line-height: 1.65; color: rgba(255,255,255,.85); }
+  .hero small { display: block; margin-top: 28px; color: rgba(255,255,255,.6); font-size: 13px; }
+
+  /* ---------- Form panel ---------- */
+  .panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    background: #FFFCF2;
+  }
+  .form-wrap { width: 100%; max-width: 380px; }
+  h1 { font-family: 'Playfair Display', serif; font-size: 30px; margin-bottom: 6px; }
+  .sub { color: var(--muted); margin-bottom: 28px; }
+
+  .field { margin-bottom: 18px; }
+  label { display: block; font-weight: 500; font-size: 14px; margin-bottom: 6px; }
+  input[type="text"], input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 11px 13px;
+    font: inherit;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: #fff;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(242,176,30,.25);
+  }
+  .field.invalid input { border-color: var(--error); }
+  .error { display: none; color: var(--error); font-size: 13px; margin-top: 5px; }
+  .field.invalid .error { display: block; }
+  .help { color: var(--muted); font-size: 13px; margin-top: 5px; }
+  .pw-wrap { position: relative; }
+  .pw-wrap input { padding-right: 62px; }
+  .show {
+    position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+    width: auto; margin: 0; padding: 6px 8px;
+    background: none; border: none; box-shadow: none;
+    font: inherit; font-size: 13px; font-weight: 500; color: var(--muted);
+    cursor: pointer;
+  }
+  .show:hover { color: var(--text); background: none; }
+
+  .terms { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: var(--muted); margin: 4px 0 20px; }
+  .terms input { margin-top: 2px; accent-color: var(--accent-dark); }
+  .terms a { color: var(--accent-dark); text-decoration: none; font-weight: 500; }
+  .terms a:hover { text-decoration: underline; }
+
+  .submit {
+    width: 100%;
+    padding: 12px;
+    font: inherit;
+    font-weight: 600;
+    color: var(--text);
+    background: var(--accent);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background .15s;
+  }
+  .submit:hover { background: var(--accent-dark); }
+
+  .footer { margin-top: 22px; text-align: center; color: var(--muted); }
+  .footer a { color: var(--accent-dark); font-weight: 500; text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 860px) {
+    body { grid-template-columns: 1fr; }
+    .hero { padding: 28px 24px; min-height: 220px; }
+    .hero::after { top: auto; left: 0; width: auto; height: 5px; }
+    .hero h2 { font-size: 26px; margin-bottom: 0; }
+    .hero p, .hero small { display: none; }
+  }
+</style>
+</head>
+<body>
+    <aside class="hero">
+        <a class="logo" href="/">Django<span>Blog</span></a>
+        <div>
+            <h2>Stories and ideas worth your time.</h2>
+            <p>Create a free account to join the conversation, save the posts you love and get new articles delivered to you.</p>
+            <small>© 2026 DjangoBlog</small>
+        </div>
+    </aside>
+    
+    <main class="panel">
+        <div class="form-wrap">
+            <h1>Create an account</h1>
+            <p class="sub">Free to join. It only takes a minute.</p>
+            
+            <form id="form" action="{% url 'register' %}" method="post" novalidate>
+          {% csrf_token %}
+        <div class="field">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" autocomplete="name">
+          <div class="error">Please enter your name.</div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" autocomplete="email">
+          <div class="error">Please enter a valid email address.</div>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="pw-wrap">
+            <input type="password" id="password" name="password" autocomplete="new-password">
+            <button type="button" class="show" id="show">Show</button>
+          </div>
+          <div class="help">At least 8 characters.</div>
+          <div class="error">Password must be at least 8 characters.</div>
+        </div>
+
+        <div class="field" style="margin-bottom:0">
+          <label class="terms">
+            <input type="checkbox" id="terms" name="terms">
+            <span>I agree to the <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</span>
+          </label>
+          <div class="error" style="margin:-14px 0 14px">Please accept the terms to continue.</div>
+        </div>
+
+        <button type="submit" class="submit">Create account</button>
+      </form>
+
+      <p class="footer">Already have an account? <a href="#">Sign in</a></p>
+      <p class="footer"><a href="{% url 'home' %}">Continue without an account -></a></p>
+    </div>
+  </main>
+
+<script>
+  const form = document.getElementById('form');
+  const pw = document.getElementById('password');
+  const showBtn = document.getElementById('show');
+
+  showBtn.addEventListener('click', () => {
+    const hidden = pw.type === 'password';
+    pw.type = hidden ? 'text' : 'password';
+    showBtn.textContent = hidden ? 'Hide' : 'Show';
+  });
+
+  const checks = {
+    name: el => el.value.trim().length >= 2,
+    email: el => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim()),
+    password: el => el.value.length >= 8,
+    terms: el => el.checked
+  };
+
+  form.addEventListener('submit', e => {
+    let valid = true;
+    for (const id in checks) {
+      const el = document.getElementById(id);
+      const ok = checks[id](el);
+      el.closest('.field').classList.toggle('invalid', !ok);
+      if (!ok) valid = false;
+    }
+    if (!valid) e.preventDefault();
+  });
+</script>
+</body>
+</html>
