@@ -28,11 +28,11 @@
         <div class="row d-flex justify-content-between align-items-center">
           <!-- Logo -->
           <div class="col-5 pt-1">
-            <a class="blog-header-logo text-dark" href="/"> Django Blog </a>
+            <a class="blog-header-logo text-dark mb-2" href="/"> Django Blog </a>
           </div>
 
           <!-- Search -->
-          <div class="col-4 d-flex justify-content-center align-items-center">
+          <div class="col-md-4 d-flex md-justify-content-center md-align-items-center">
             <form action="{% url 'search' %}" method="get" class="search-form">
               <input
                 type="text"
@@ -44,15 +44,21 @@
               <button type="submit" class="search-btn bg-warning">Go</button>
             </form>
           </div>
-
+          {%if not user.is_authenticated%}
           <!-- Login / Register -->
-          <div class="col-3 d-flex justify-content-end align-items-center">
-            <a class="btn btn-sm btn-warning" href="#"> Login </a>
-
-            &nbsp;
-
+          <div class="col-md-3 d-flex md-d-flex md-justify-content-end justify-content-end align-items-center">
             <a class="btn btn-sm btn-outline-secondary" href="{%url 'register' %}"> Register </a>
+            
+            &nbsp;
+            <a class="btn btn-sm btn-warning" href="{%url 'login' %}"> Login </a>
+
           </div>
+          {%else%}
+          <div class="col-md-3 d-flex md-d-flex md-justify-content-end justify-content-end align-items-center">
+            <p class='font-family:sans-serif'> {{user}} <a class="btn btn-sm btn-cool" href="{%url 'logout' %}"> Log out </a></p>
+
+          </div>
+          {%endif%}
         </div>
       </header>
 

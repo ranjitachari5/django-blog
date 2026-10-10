@@ -1,5 +1,4 @@
-from django.shortcuts import get_object_or_404, redirect, render
-from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, render
 from django.db.models import Q
 from .models import Blog, Category
 # Create your views here.
