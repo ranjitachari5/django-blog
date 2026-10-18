@@ -1,0 +1,14 @@
+{% extends 'base.html'%}
+{%block content%}
+<div class="row">
+  {% include 'dashboards/sidebar.html'%}
+  <div class="col-md-9">
+    <h2>ADD NEW CATEGORY</h2>
+    <form action="{%url 'add_category'%}" method="POST">
+        {%csrf_token %}
+        {{form}}
+        <button type="submit" class="btn btn-warning">Submit</button>
+    </form>
+  </div>
+</div>
+{%endblock%}

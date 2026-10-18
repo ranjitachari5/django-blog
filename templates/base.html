@@ -17,7 +17,7 @@
       href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900"
       rel="stylesheet"
     />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="{% static 'css/blog_home.css' %}" rel="stylesheet" />
   </head>
 
@@ -55,7 +55,7 @@
           </div>
           {%else%}
           <div class="col-md-3 d-flex md-d-flex md-justify-content-end justify-content-end align-items-center">
-            <p class='font-family:sans-serif'> {{user}} <a class="btn btn-sm btn-cool" href="{%url 'logout' %}"> Log out </a></p>
+            <p class='font-family:sans-serif'>  <a class="btn btn-sm btn-cool" href="{%url 'dashboard' %}">Dashboard </a>  <a class="btn btn-sm btn-cool" href="{%url 'logout' %}"> Log out </a></p>
 
           </div>
           {%endif%}
