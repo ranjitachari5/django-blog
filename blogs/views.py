@@ -16,4 +16,5 @@ def blogs(request,slug):
 
 # seach feature
 def search(request):
+    
     return render(request,'search.html')

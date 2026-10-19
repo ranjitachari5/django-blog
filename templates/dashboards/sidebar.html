@@ -4,7 +4,7 @@
 <a href="{{ dashboard_url }}"
    class="nav-link text-dark {% if request.path == dashboard_url %}bg-warning{% endif %}">Dashboard</a>
             <a href="{%url 'categories'%}" class="nav-link text-dark {%if 'categories' in request.path %}bg-warning{%endif%} ">Categories</a>
-            <a href="" class="nav-link text-dark {%if 'posts' in request.path %}bg-warning{%endif%}">Posts</a>
+            <a href="{%url 'posts' %}" class="nav-link text-dark {%if 'posts' in request.path %}bg-warning{%endif%}">Posts</a>
             <a href="" class="nav-link text-dark {%if 'logout' in request.path %}bg-warning{%endif%}">Logout</a>
         </div>
     </div>

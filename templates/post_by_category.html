@@ -1,50 +1,45 @@
-
-{%extends 'base.html' %}
-
-{%block content%}
+{%extends 'base.html' %} {%block content%}
 
 <!-- Category Heading -->
 <div class="text-center my-4">
-    <h3 class="section-heading text-uppercase">
-        Category - {{ category.category_name }}
-    </h3>
-    <p class="text-muted">
-        Explore articles in this category
-    </p>
+  <h3 class="section-heading text-uppercase">
+    Category - {{ category.category_name }}
+  </h3>
+  <p class="text-muted">Explore articles in this category</p>
 </div>
 
 <!-- Category Posts -->
 <div class="row mb-4">
-    {% for post in posts %}
-        <div class="col-md-6 mb-4">
-            <div class="card post-card h-100">
-                <div class="card-body">
-                    <a href="{% url 'blogs' post.slug %}" class="text-white font-weight-bold"
-              ><h3 class="display-5">{{post.title}}</h3>
-            </a>
+  {% for post in posts %}
+  <div class="col-md-6 mb-4">
+    <div class="card post-card h-100">
+      <div class="card-body">
+        <img
+          src="{{ post.featured_img.url }}"
+          alt="{{ post.title }}"
+          class="img-fluid"
+          style="width: 100%; height: 250px; object-fit: cover"
+        />
+        <a href="{% url 'blog' post.slug %}" class="text-white font-weight-bold"
+          ><h3 class="display-5">{{post.title}}</h3>
+        </a>
 
-                    <small class="text-muted">
-                        {{ post.created_at|timesince }} ago |
-                        {{ post.author }}
-                    </small>
+        <small class="text-muted">
+          {{ post.created_at|timesince }} ago | {{ post.author }}
+        </small>
 
-                    <p class="card-text mt-2">
-                        {{ post.short_description|truncatewords:20 }}
-                    </p>
-                </div>
-            </div>
-        </div>
-    {% empty %}
-        <div class="col-12 text-center py-5">
-            <h5>No posts found</h5>
-            <p class="text-muted">
-                There are no articles in this category yet.
-            </p>
-        </div>
-    {% endfor %}
+        <p class="card-text mt-2">
+          {{ post.short_description|truncatewords:20 }}
+        </p>
+      </div>
+    </div>
+  </div>
+  {% empty %}
+  <div class="col-12 text-center py-5">
+    <h5>No posts found</h5>
+    <p class="text-muted">There are no articles in this category yet.</p>
+  </div>
+  {% endfor %}
 </div>
 
-
- 
 {%endblock%}
-

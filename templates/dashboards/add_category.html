@@ -1,14 +1,207 @@
-{% extends 'base.html'%}
-{%block content%}
-<div class="row">
-  {% include 'dashboards/sidebar.html'%}
-  <div class="col-md-9">
-    <h2>ADD NEW CATEGORY</h2>
-    <form action="{%url 'add_category'%}" method="POST">
-        {%csrf_token %}
-        {{form}}
-        <button type="submit" class="btn btn-warning">Submit</button>
-    </form>
+
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+  .category-page {
+    padding: 35px 15px;
+    min-height: 80vh;
+  }
+
+  .category-box {
+    max-width: 650px;
+    margin: 10px auto;
+    padding: 32px;
+    background: #fff;
+    border: 1px solid #f0e3b1;
+    border-radius: 16px;
+    box-shadow: 0 8px 28px rgba(25, 35, 50, 0.06);
+  }
+
+  .category-header {
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .category-header h2 {
+    font-size: 1.6rem;
+    font-weight: 750;
+    color: #202633;
+    border-left: 5px solid #ffc107;
+    padding-left: 14px;
+    margin-bottom: 8px;
+  }
+
+  .category-header p {
+    color: #7b8492;
+    font-size: 0.92rem;
+    margin: 12px 0 0 19px;
+  }
+
+  .category-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #343c49;
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+
+  .category-form input,
+  .category-form select,
+  .category-form textarea {
+    display: block;
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #dce1e8;
+    border-radius: 9px;
+    background: #fff;
+    color: #29313d;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .category-form input:focus,
+  .category-form select:focus,
+  .category-form textarea:focus {
+    border-color: #e9ae00;
+    box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.16);
+  }
+
+  .category-form .mb-3 {
+    margin-bottom: 24px !important;
+  }
+
+  .category-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 30px;
+    padding-top: 22px;
+    border-top: 1px solid #eee;
+  }
+
+  .category-submit {
+    padding: 11px 25px;
+    background: #ffc107;
+    color: #28220e;
+    border: 1px solid #ffc107;
+    border-radius: 9px;
+    font-weight: 700;
+    transition: 0.2s;
+  }
+
+  .category-submit:hover {
+    background: #e5ab00;
+    border-color: #e5ab00;
+    transform: translateY(-1px);
+  }
+
+  .category-cancel {
+    display: inline-block;
+    padding: 11px 20px;
+    border: 1px solid #dce1e8;
+    border-radius: 9px;
+    color: #4b5563;
+    background: #fff;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .category-cancel:hover {
+    background: #f5f6f8;
+    color: #222;
+  }
+
+  .category-form .text-danger {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 767px) {
+    .category-page {
+      padding: 20px 8px;
+    }
+
+    .category-box {
+      padding: 23px 17px;
+    }
+
+    .category-header h2 {
+      font-size: 1.35rem;
+    }
+  }
+</style>
+
+<div class="container-fluid category-page">
+  <div class="row g-4">
+
+    {% include 'dashboards/sidebar.html' %}
+
+    <div class="col-md-9">
+      <div class="category-box">
+
+        <div class="category-header">
+          <h2>Add New Category</h2>
+          <p>Create a category to organize your blog posts.</p>
+        </div>
+
+        <form action="{% url 'add_category' %}"
+              method="POST"
+              class="category-form">
+
+          {% csrf_token %}
+
+          {% for field in form %}
+            <div class="mb-3">
+
+              <label for="{{ field.id_for_label }}">
+                {{ field.label }}
+                {% if field.field.required %}
+                  <span class="text-danger">*</span>
+                {% endif %}
+              </label>
+
+              {{ field }}
+
+              {% if field.help_text %}
+                <small class="text-muted d-block mt-1">
+                  {{ field.help_text|safe }}
+                </small>
+              {% endif %}
+
+              {% for error in field.errors %}
+                <div class="text-danger">{{ error }}</div>
+              {% endfor %}
+
+            </div>
+          {% endfor %}
+
+          {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+              {{ form.non_field_errors }}
+            </div>
+          {% endif %}
+
+          <div class="category-actions">
+            <a href="{% url 'categories' %}"
+               class="category-cancel">
+              Cancel
+            </a>
+
+            <button type="submit" class="category-submit">
+              Create Category
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+
   </div>
 </div>
-{%endblock%}
+
+{% endblock %}
