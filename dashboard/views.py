@@ -74,9 +74,11 @@ def delete_post(request,pk):
 def edit_post(request,pk):
     blog=get_object_or_404(Blog,pk=pk)
     if request.method=='POST':
-        form=BlogForm(request.POST,instance=blog)
+        form=BlogForm(request.POST,request.FILES,                                               instance=blog)
         if form.is_valid():
-            form.save()
+            post=form.save(commit=False)
+            post.author=request.user
+            post.save()
             return redirect('posts')
     else:
         form=BlogForm(instance=blog)
@@ -90,7 +92,9 @@ def add_post(request):
     if request.method=='POST':
         form=BlogForm(request.POST,request.FILES)
         if form.is_valid():
-            form.save()
+            post=form.save(commit=False)
+            post.author=request.user
+            post.save()
             return redirect('posts')
         else:
             print(form.errors)
