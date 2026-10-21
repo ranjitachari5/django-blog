@@ -1,13 +1,37 @@
+/* ==========================================================================
+   Variables
+   ========================================================================== */
+:root {
+  --color-bg: #f8f9fc;
+  --color-text: #202b3c;
+  --color-heading: #172337;
+  --color-muted: #64748b;
+  --color-meta: #727272;
+  --color-border: #e5e7eb;
+  --color-border-dark: #273449;
+  --color-accent: #2563eb;
+  --color-surface: #fff;
+  --color-search: orange;
 
-/* General */
+  --font-heading: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-ui: Verdana, Geneva, Tahoma, sans-serif;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
 a {
   text-decoration: none;
   transition: color 0.2s ease;
 }
+
 body {
-  background-color: #f8f9fc;
-  color: #202b3c;
-  font-family: Arial, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
   line-height: 1.7;
 }
 
@@ -15,43 +39,41 @@ body {
   max-width: 1140px;
 }
 
-/* Header */
-.blog-header {
-  border-bottom: 1px solid #e5e7eb;
-  padding-bottom: 1rem;
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-heading);
+  color: var(--color-heading);
 }
 
-.blog-header-logo {
-  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
-  font-size: 2.25rem;
-  font-weight: 900;
-  color: #172337 !important;
-}
-
-.blog-header-logo:hover {
-  text-decoration: none;
-  color: #2563eb !important;
-}
-
-/* Headings */
-h1, h2, h3, h4, h5, h6 {
-  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
-  color: #172337; 
+h6,
+.h6 {
+  font-family: var(--font-ui);
 }
 
 .display-4 {
   font-size: 2.5rem;
 }
 
-@media (min-width: 768px) {
-  .display-4 {
-    font-size: 3rem;
-  }
+/* ==========================================================================
+   Header and navigation
+   ========================================================================== */
+.blog-header {
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 1rem;
 }
 
-/* Navigation */
+.blog-header a.blog-header-logo {
+  font-family: var(--font-heading);
+  font-size: 2.25rem;
+  font-weight: 900;
+  color: var(--color-heading);
+}
+
+.blog-header a.blog-header-logo:hover {
+  color: var(--color-accent);
+}
+
 .nav-scroller {
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .nav a {
@@ -59,53 +81,52 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav a:hover {
-  color: #2563eb !important;
-  text-decoration: none;
+  color: var(--color-accent) !important;
 }
 
-/* Hero banner */
+/* ==========================================================================
+   Hero banner
+   ========================================================================== */
 .hero-featured {
   min-height: 280px;
   display: flex;
   align-items: center;
-  background-color: #172337;
+  background-color: var(--color-heading);
   background-position: center;
   background-size: cover;
   background-blend-mode: overlay;
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
 }
 
 .hero-featured h1 {
   color: #fff;
   font-weight: 900;
-  
 }
 
 .hero-featured p {
   color: #f1f5f9;
 }
 
-.bg-dark a,
-.bg-dark a:hover,
-.bg-dark a:focus,
-.bg-dark a:active {
+.bg-dark a {
   text-decoration: none;
 }
 
-/* Section headings */
+/* ==========================================================================
+   Sections and cards
+   ========================================================================== */
 .section-heading {
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-heading);
   font-weight: 900;
-  color: #172337;
+  color: var(--color-heading);
   margin-bottom: 8px;
 }
 
 /* Featured cards */
 .post-card {
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
   overflow: hidden;
   height: 100%;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -126,7 +147,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .post-card p {
-  color: #64748b;
+  color: var(--color-muted);
 }
 
 /* Recent posts */
@@ -140,12 +161,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .blog-post-meta {
   margin-bottom: 1.25rem;
-  color: #727272;
+  color: var(--color-meta);
 }
 
 .recent-card {
   border: 0;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--color-border);
   border-radius: 0;
   background: transparent;
   margin-bottom: 1rem;
@@ -159,15 +180,19 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 2.2rem;
   font-weight: 700;
 }
+
 .recent-card p {
-  color: #64748b;
+  color: var(--color-muted);
 }
 
-/* Sidebar */
+/* ==========================================================================
+   Sidebar
+   ========================================================================== */
 .sidebar-box {
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1rem;
   margin-bottom: 20px;
 }
 
@@ -175,7 +200,48 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
 }
 
-/* Pagination */
+/* ==========================================================================
+   Search
+   ========================================================================== */
+.search-input {
+  border: 1px solid #ced4da;
+  border-radius: var(--radius-sm);
+  padding: 0.3rem 0.75rem;
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: var(--color-search);
+  box-shadow: 0 0 0 0.2rem rgba(255, 165, 0, 0.25);
+}
+
+.search-btn {
+  border: 1px solid var(--color-search);
+  border-radius: var(--radius-sm);
+  padding: 0.3rem 0.9rem;
+  background: transparent;
+  color: var(--color-text);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.search-btn:hover,
+.search-btn:focus {
+  background: var(--color-search);
+  color: #fff;
+}
+
+/* ==========================================================================
+   Buttons, pagination, utilities
+   ========================================================================== */
+.btn-warning {
+  border: none;
+  font-weight: 600;
+}
+
+.btn-warning:hover {
+  background-color: #e6a000;
+}
+
 .blog-pagination {
   margin-bottom: 4rem;
 }
@@ -188,34 +254,16 @@ h1, h2, h3, h4, h5, h6 {
   height: 250px;
 }
 
-@media (min-width: 768px) {
-  .h-md-250 {
-    height: 250px;
-  }
-}
-
-/* Buttons and links */
-a {
-  transition: color 0.2s ease;
-}
-
-.btn-warning {
-  border: none;
-  font-weight: 600;
-}
-
-.btn-warning:hover {
-  background-color: #e6a000;
-}
-
-/* Footer */
+/* ==========================================================================
+   Footer
+   ========================================================================== */
 .blog-footer {
   padding: 2rem 0;
-  color: #e2e8f0;
-  text-align: center;
-  background-color: #172337;
-  border-top: 1px solid #273449;
   margin-top: 40px;
+  color: var(--color-border);
+  text-align: center;
+  background-color: var(--color-heading);
+  border-top: 1px solid var(--color-border-dark);
 }
 
 .blog-footer p:last-child {
@@ -226,9 +274,21 @@ a {
   color: #fff;
 }
 
-/* Responsive */
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (min-width: 768px) {
+  .display-4 {
+    font-size: 3rem;
+  }
+
+  .h-md-250 {
+    height: 250px;
+  }
+}
+
 @media (max-width: 767px) {
-  .blog-header-logo {
+  .blog-header a.blog-header-logo {
     font-size: 1.5rem;
   }
 
@@ -245,6 +305,10 @@ a {
     font-size: 1.15rem;
   }
 
+  .recent-card h3 {
+    font-size: 1.5rem;
+  }
+
   .nav-scroller .nav {
     overflow-x: auto;
     flex-wrap: nowrap;
@@ -254,23 +318,4 @@ a {
   .nav-scroller .nav a {
     white-space: nowrap;
   }
-}
-
-/* search input */
-.search-input {
-  border: 1px solid #ced4da;
-  border-radius: 0.5rem;
-  padding: 0.3rem 0.75rem;
-  outline: none;
-}
-
-.search-input:focus {
-  border-color: orange;
-  box-shadow: 0 0 0 0.2rem rgba(255, 165, 0, 0.25);
-}
-
-.search-btn {
-  border: 1px solid orange;
-  border-radius: 0.5rem;
-  padding: 0.3rem 0.9rem;
 }

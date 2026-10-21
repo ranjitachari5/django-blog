@@ -17,8 +17,66 @@
       href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
     <link href="{% static 'css/blog_home.css' %}" rel="stylesheet" />
+    <style>
+      .page-wrapper {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .page-wrapper > .container {
+        flex: 1;
+      }
+      .blog-footer {
+        background: #202633;
+        color: #c9ced8;
+        padding: 28px 0;
+        margin-top: 40px;
+        border-top: 4px solid #ffc107;
+      }
+
+      .footer-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        text-align: center;
+      }
+
+      .footer-brand {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 20px;
+      }
+
+      .footer-links a {
+        color: #c9ced8;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.2s;
+      }
+
+      .footer-links a:hover {
+        color: #ffc107;
+      }
+
+      .footer-copy {
+        margin: 0;
+        font-size: 0.82rem;
+        color: #8b93a1;
+      }
+    </style>
   </head>
 
   <body>
@@ -28,11 +86,15 @@
         <div class="row d-flex justify-content-between align-items-center">
           <!-- Logo -->
           <div class="col-5 pt-1">
-            <a class="blog-header-logo text-dark mb-2" href="/"> Django Blog </a>
+            <a class="blog-header-logo text-dark mb-2" href="/">
+              Django Blog
+            </a>
           </div>
 
           <!-- Search -->
-          <div class="col-md-4 d-flex md-justify-content-center md-align-items-center">
+          <div
+            class="col-md-4 d-flex md-justify-content-center md-align-items-center"
+          >
             <form action="{% url 'search' %}" method="get" class="search-form">
               <input
                 type="text"
@@ -46,17 +108,33 @@
           </div>
           {%if not user.is_authenticated%}
           <!-- Login / Register -->
-          <div class="col-md-3 d-flex md-d-flex md-justify-content-end justify-content-end align-items-center">
-            <a class="btn btn-sm btn-outline-secondary" href="{%url 'register' %}"> Register </a>
-            
-            &nbsp;
-            <a class="btn btn-sm btn-warning" href="{%url 'login' %}"> Login </a>
+          <div
+            class="col-md-3 d-flex md-d-flex md-justify-content-end justify-content-end align-items-center"
+          >
+            <a
+              class="btn btn-sm btn-outline-secondary"
+              href="{%url 'register' %}"
+            >
+              Register
+            </a>
 
+            &nbsp;
+            <a class="btn btn-sm btn-warning" href="{%url 'login' %}">
+              Login
+            </a>
           </div>
           {%else%}
-          <div class="col-md-3 d-flex md-d-flex md-justify-content-end justify-content-end align-items-center">
-            <p class='font-family:sans-serif'>  <a class="btn btn-sm btn-cool" href="{%url 'dashboard' %}">Dashboard </a>  <a class="btn btn-sm btn-cool" href="{%url 'logout' %}"> Log out </a></p>
-
+          <div
+            class="col-md-3 d-flex md-d-flex md-justify-content-end justify-content-end align-items-center"
+          >
+            <p class="font-family:sans-serif">
+              <a class="btn btn-sm btn-cool" href="{%url 'dashboard' %}"
+                >Dashboard
+              </a>
+              <a class="btn btn-sm btn-cool" href="{%url 'logout' %}">
+                Log out
+              </a>
+            </p>
           </div>
           {%endif%}
         </div>
@@ -77,12 +155,15 @@
       {% block content %} {% endblock %}
 
       <!-- Footer -->
-      <footer class="blog-footer">
-        <p>
-          Django blog built with ❤️ by
-          <a href="#">Ranjit Kumar A</a>
-        </p>
-      </footer>
     </div>
+    <footer class="blog-footer">
+      <div class="container footer-inner">
+        <nav class="footer-links">
+          <a href="{% url 'home' %}">Home</a>
+          <a href="https://www.linkedin.com/in/ranjit-kumar-a-3a7785335/" target="_blank">Contact</a>
+        </nav>
+        <p class="footer-copy">&copy; 2026 Django Blog. All rights reserved.</p>
+      </div>
+    </footer>
   </body>
 </html>

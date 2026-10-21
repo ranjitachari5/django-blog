@@ -26,7 +26,9 @@ urlpatterns = [
     path('category/',include('blogs.urls'),),
     # search blogs
     path('blog/<slug:slug>',BlogView.blogs,name='blog'),
+    path('blog/delete_comment/<int:pk>',BlogView.delete_comment,name='delete_comment'),
     path('blogs/search',BlogView.search,name='search'),
+
     # login and register
     path('register/',views.register,name='register'),
     path('login/',views.login,name='login'),

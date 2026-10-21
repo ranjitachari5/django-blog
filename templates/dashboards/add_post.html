@@ -134,7 +134,7 @@
     }
   }
 </style>
-
+{% if perms.blogs.add_blog %}
 <div class="container-fluid post-page">
   <div class="row g-4">
 
@@ -205,5 +205,6 @@
 
   </div>
 </div>
+{%endif%}
 
 {% endblock %}

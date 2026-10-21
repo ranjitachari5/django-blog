@@ -1,5 +1,6 @@
 {% extends 'base.html'%}
 {%block content%}
+ {%if user.is_authenticated%}
 <div class="row">
     {% include 'dashboards/sidebar.html'%}
     <div class="col-md-9 ">
@@ -24,4 +25,9 @@
         </div>
     </div>    
 </div>
+{%else%}
+<h6 class="text-danger" style="font-family: 'Times New Roman', serif;">
+    Wait for the admin to grant permission to access this page.
+</h6>
+{%endif%}
 {%endblock%}

@@ -1,4 +1,5 @@
 {% extends 'base.html'%} {%block content%}
+{%if perms.blogs.view_blog %}
 <div class="row">
   {% include 'dashboards/sidebar.html'%}
   <div class="col-md-9">
@@ -57,4 +58,5 @@
     </table>
   </div>
 </div>
+{%endif%} 
 {%endblock%}

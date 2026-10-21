@@ -4,7 +4,7 @@ from blogs.forms import RegistrationForm
 from blogs.models import Blog, Category
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import auth
-from django.contrib.auth.models import User
+from django.contrib.auth.models import Group, User
 def home(request):
     categories=Category.objects.all()
     featured_posts=Blog.objects.filter(is_featured=True,status="Published")
@@ -19,7 +19,9 @@ def register(request):
         if users:
             print("User Exists")
         if form.is_valid():
-            form.save()
+            user=form.save() 
+            editor_group = Group.objects.get(name='Editor')
+            user.groups.add(editor_group)
             return redirect('login') 
         else:
             print(form.errors)

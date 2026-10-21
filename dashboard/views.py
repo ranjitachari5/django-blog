@@ -59,11 +59,13 @@ def delete_category(request,pk):
 
 
 
-@login_required(login_url='login')
+@login_required
 def posts(request):
-    posts=Blog.objects.all()
-    context={'posts':posts}
-    return render(request,'dashboards/posts.html',context)
+    if request.user.is_superuser:
+        posts = Blog.objects.all()
+    else:
+        posts = Blog.objects.filter(author=request.user)
+    return render(request, 'dashboards/posts.html', {'posts': posts})
 
 
 @login_required(login_url='login')

@@ -139,7 +139,7 @@
   <div class="row g-4">
 
     {% include 'dashboards/sidebar.html' %}
-
+{%if perm.auth.edit_category%}
     <div class="col-md-9">
       <div class="category-box">
 
@@ -200,5 +200,10 @@
 
   </div>
 </div>
+{%else%}
+<h6 class="text-danger font-family-Times">You do not have permission to access this page!</h6>
+
+{%endif%}
+
 
 {% endblock %}
