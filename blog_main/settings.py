@@ -72,7 +72,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'blog_main.wsgi.application'
 
-
+CSRF_COOKIE_NAME = "blog_csrftoken"
+SESSION_COOKIE_NAME = "blog_sessionid"
 # Database
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
 

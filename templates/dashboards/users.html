@@ -1,0 +1,63 @@
+{% extends 'base.html'%} {%block content%}
+<div class="row">
+  {% include 'dashboards/sidebar.html'%}
+  <div class="col-md-9">
+    {%if perms.auth.view_user%}
+    <h2>ALL USERS</h2>
+    <a href="{%url 'add_user'%}" class="btn btn-dark float-right text-white m-1">Add New</a>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Username</th>
+          <th scope="col">Email</th>
+          <th scope="col">Is Staff</th>
+          <th scope="col">Role</th>
+          <th scope="col">Date Joined</th>
+          <th scope="col">Action</th> 
+          
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr>
+          <th scope="row">{{ forloop.counter }}</th>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>
+            {% if user.is_staff %}
+            <i class="fa-solid fa-check text-success"></i>
+            {% else %}
+            <i class="fa-solid fa-xmark text-danger"></i>
+            {% endif %}
+          </td>
+         <td>
+  {% for group in user.groups.all %}
+    {{ group.name }}{% if not forloop.last %}, {% endif %}
+  {% empty %}
+    No Group Assigned
+  {% endfor %}
+</td>
+          <td>{{ user.date_joined|date:"d-M-Y" }}</td>
+          <td>
+            <a href="{%url 'edit_user' user.id  %}" class="text-primary mr-3" title="Edit"
+              ><i class="fa-regular fa-pen-to-square"></i
+            ></a>
+            <a href="{%url 'delete_user' user.id %}" class="text-danger" title="Delete"
+              ><i class="fa-regular fa-trash-can"></i
+            ></a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="5" class="text-center">No categories found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {%else%}
+    <p>You Do Not Have Permission To See This Page</p>
+    {%endif%}
+  </div>
+</div>
+{%endblock%}

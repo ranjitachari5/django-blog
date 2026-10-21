@@ -1,7 +1,9 @@
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import BlogForm, CategoryForm
+from blogs.forms import RegistrationForm
+from .forms import AddUserForm, BlogForm, CategoryForm, UserForm
 from blogs.models import Blog, Category
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 @login_required(login_url='login')
@@ -105,3 +107,44 @@ def add_post(request):
         'form':form
     }
     return render(request,'dashboards/add_post.html',context)
+
+@login_required(login_url='login')
+def users(request):
+    users=User.objects.all()
+    context={
+        'users':users,
+    }
+    return render(request,'dashboards/users.html',context)
+
+@login_required(login_url='login')
+def edit_user(request,pk):
+    user=get_object_or_404(User,pk=pk)
+    if request.method=='POST':
+        form=UserForm(request.POST,instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('users')
+    else:
+        form=UserForm(instance=user)
+    context={
+        'form':form
+    }
+    return render(request,'dashboards/edit_user.html',context)
+
+@login_required(login_url='login')
+def delete_user(request,pk):
+    user=get_object_or_404(User,pk=pk)
+    user.delete()
+    return redirect('users')
+
+@login_required(login_url='login')
+def add_user(request):
+    if request.method=='POST':
+        form=AddUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('users')
+    else:
+        form=AddUserForm()
+    context={'form':form}
+    return render(request,'dashboards/add_user.html',context)

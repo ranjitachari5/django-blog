@@ -12,4 +12,8 @@ urlpatterns=[
     path('posts/edit_post/<int:pk>',views.edit_post,name="edit_post"),
     path('posts/delete_post/<int:pk>',views.delete_post,name="delete_post"),
     path('posts/add_post/',views.add_post,name="add_post"),
+    path('users/',views.users,name='users'),
+    path('users/edit_user/<int:pk>',views.edit_user,name='edit_user'),
+    path('users/delete_user/<int:pk>',views.delete_user,name='delete_user'),
+    path('users/add_user/',views.add_user,name='add_user'),
 ]

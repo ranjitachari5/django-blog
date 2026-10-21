@@ -1,0 +1,284 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+  .edit-page {
+    padding: 30px 15px 50px;
+    min-height: 85vh;
+  }
+
+  .edit-box {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 32px;
+    background: #fff;
+    border: 1px solid #f0e3b1;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(25, 35, 50, 0.06);
+  }
+
+  .edit-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .edit-header h2 {
+    font-size: 1.65rem;
+    font-weight: 750;
+    color: #202633;
+    border-left: 5px solid #ffc107;
+    padding-left: 14px;
+    margin: 0;
+  }
+
+  .edit-header p {
+    color: #7b8492;
+    font-size: 0.9rem;
+    margin: 8px 0 0 19px;
+  }
+
+  .edit-badge {
+    background: #fff5cf;
+    color: #785700;
+    padding: 7px 12px;
+    border-radius: 30px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .edit-form .mb-3 {
+    margin-bottom: 22px !important;
+  }
+
+  .edit-form label {
+    display: block;
+    color: #343c49;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .edit-form input:not([type="file"]),
+  .edit-form select,
+  .edit-form textarea {
+    display: block;
+    width: 100%;
+    padding: 11px 14px;
+    font-size: 0.95rem;
+    color: #29313d;
+    background-color: #fff;
+    border: 1px solid #dce1e8;
+    border-radius: 9px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .edit-form input:focus,
+  .edit-form select:focus,
+  .edit-form textarea:focus {
+    border-color: #e9ae00;
+    box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.16);
+  }
+
+  .edit-form textarea {
+    min-height: 140px;
+    resize: vertical;
+    line-height: 1.7;
+  }
+
+  .edit-form .form-control,
+  .edit-form .form-select {
+    width: 100%;
+  }
+
+  .edit-form input[type="file"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: #fffdf5;
+    border: 1px dashed #dfc56e;
+    border-radius: 9px;
+    font-size: 0.88rem;
+  }
+
+  .current-image {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 5px 0 12px;
+    padding: 12px 14px;
+    background: #f8fafc;
+    border: 1px solid #e8edf3;
+    border-radius: 9px;
+    font-size: 0.88rem;
+  }
+
+  .current-image a {
+    color: #936b00;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+  }
+
+  .edit-form .text-danger {
+    margin-top: 6px;
+  }
+
+  .edit-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    margin-top: 30px;
+    padding-top: 22px;
+    border-top: 1px solid #eee;
+  }
+
+  .btn-save {
+    background: #ffc107;
+    color: #28220e;
+    border: 1px solid #ffc107;
+    border-radius: 9px;
+    padding: 11px 25px;
+    font-weight: 700;
+    transition: all 0.2s;
+  }
+
+  .btn-save:hover {
+    background: #e5ab00;
+    border-color: #e5ab00;
+    color: #171717;
+    transform: translateY(-1px);
+  }
+
+  .btn-cancel {
+    display: inline-block;
+    text-decoration: none;
+    padding: 11px 20px;
+    border: 1px solid #dce1e8;
+    border-radius: 9px;
+    color: #4b5563;
+    font-weight: 600;
+    background: #fff;
+  }
+
+  .btn-cancel:hover {
+    background: #f5f6f8;
+    color: #222;
+  }
+
+  @media (max-width: 767px) {
+    .edit-page {
+      padding: 20px 8px 35px;
+    }
+
+    .edit-box {
+      padding: 22px 17px;
+      border-radius: 12px;
+    }
+
+    .edit-header {
+      align-items: flex-start;
+    }
+
+    .edit-header h2 {
+      font-size: 1.4rem;
+    }
+
+    .edit-badge {
+      display: none;
+    }
+
+    .edit-actions {
+      flex-wrap: wrap;
+    }
+
+    .edit-actions button,
+    .edit-actions a {
+      flex: 1;
+      text-align: center;
+    }
+  }
+</style>
+
+<div class="container-fluid edit-page">
+  <div class="row g-4">
+
+    {% include 'dashboards/sidebar.html' %}
+
+    <div class="col-md-9">
+      <div class="edit-box">
+
+        <div class="edit-header">
+          <div>
+            <h2>Edit User</h2>
+            <p>Update the user details.</p>
+          </div>
+          <span class="edit-badge">USER EDITOR</span>
+        </div>
+
+        <form method="POST" enctype="multipart/form-data"
+              class="edit-form">
+          {% csrf_token %}
+
+        {% for field in form %}
+  {% if field.name != "date_joined" and field.name != "is_active" and field.name != "is_superuser" and field.name != "last_login" %}
+    <div class="mb-3">
+
+      <label for="{{ field.id_for_label }}">
+        {{ field.label }}
+        {% if field.field.required %}
+          <span class="text-danger">*</span>
+        {% endif %}
+      </label>
+
+      {{ field }}
+
+      {% if field.help_text %}
+        <small class="text-muted d-block mt-1">
+          {{ field.help_text|safe }}
+        </small>
+      {% endif %}
+
+      {% for error in field.errors %}
+        <div class="text-danger">{{ error }}</div>
+      {% endfor %}
+
+    </div>
+  {% endif %}
+{% endfor %}
+          {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+              {{ form.non_field_errors }}
+            </div>
+          {% endif %}
+
+          <div class="edit-actions">
+            <a href="{% url 'posts' %}"
+               class="btn-cancel">
+              Cancel
+            </a>
+
+            <button type="submit" class="btn btn-save">
+              Save Changes
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+{% endblock %}
+
